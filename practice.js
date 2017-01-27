@@ -23,10 +23,16 @@
   //email --> which is a string
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
-    //Code Here
+var user = {
+  username: 'lskywalker',
+  email: 'lskywalker@hotmail.com',
+  getUsername: function(){
+    return this.username;
+  }
+};
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
-
+user.getUsername();
 
 //Next Problem
 
@@ -37,6 +43,16 @@
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
+
+function Car(make, model, year){
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.move = 0;
+  this.moveCar = function(){
+    return this.move += 10;
+  };
+}
 
 prius.moveCar(); //increments prius' move property by 10. Returns the new move property.
 mustang.moveCar(); //increments mustang' move property by 10. Returns the new move property.
@@ -54,8 +70,10 @@ var getYear = function(){
 //Above you're given the getYear function. Using your prius and mustang objects from above, use the proper syntax that will allow for you to call the getYear function with the prius then the mustang objects being the focal objects. *Don't add getYear as a property on both objects*.
 
 //Note(no tests)
-  //Code Here
-
+getYear.call(prius);
+getYear();
+getYear.call(mustang);
+getYear();
 
 //New Problem
 
@@ -69,7 +87,7 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
 
 //Above you're given an object, and  a function. What will the getUsername function return?
 //Note(no tests)
